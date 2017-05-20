@@ -5,4 +5,4 @@
 ![Platform iOS](https://img.shields.io/badge/nanodegree-iOS-blue.svg)
 
 Meme 1.0 is an App that creates fun Memes in three clicks ready to share to friends.
-This app was made from the Udacity Master Nanodegree in iOS.
+This app was made for the Udacity Master Nanodegree in iOS.
