@@ -82,7 +82,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="MEME 1.0" id="Z1P-Sr-gPE">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="action" id="rSJ-u8-gyO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="rSJ-u8-gyO">
                             <connections>
                                 <action selector="saveAndShare:" destination="BYZ-38-t0r" id="Pwe-Or-uxK"/>
                             </connections>

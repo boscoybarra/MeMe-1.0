@@ -110,11 +110,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: Generate Meme Image
     
-    func generateMemedImage() -> UIImage {
-        
+    func configureBar(hidden: Bool) {
         // Hide toolbar and navbar
         self.navigationBar.isHidden = true
         self.toolBar.isHidden = true
+        
+        // Show toolbar and navbar
+        self.navigationBar.isHidden = false
+        self.toolBar.isHidden = false
+    
+    }
+    
+    func generateMemedImage() -> UIImage {
+        
+        // Hide Bar
+        configureBar(hidden: true)
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -122,9 +132,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        // Show toolbar and navbar
-        self.navigationBar.isHidden = false
-        self.toolBar.isHidden = false
+        // Show Bar
+        configureBar(hidden: false)
+      
         
         return memedImage
     }
@@ -144,21 +154,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return true
     }
     
-    // MARK: IBActions
-    
-    @IBAction func pickAnImage(_ sender: Any) {
+    func presentPicker(withSource source: UIImagePickerControllerSourceType) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
+        pickerController.sourceType = source
         present(pickerController, animated: true, completion: nil)
     }
     
+    // MARK: IBActions
+    
+    @IBAction func pickAnImage(_ sender: Any) {
+        presentPicker(withSource: .camera)
+    }
+    
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        presentPicker(withSource: .photoLibrary)
     }
     
     @IBAction func saveAndShare(_ sender: UIBarButtonItem) {
@@ -168,8 +178,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         controller.completionWithItemsHandler = {
             (activityType, complete, returnedItems, activityError ) in
            
-            print("Hello!")
-            
+            self.save()
             
         }
         present(controller, animated: true, completion: nil)
@@ -213,6 +222,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func unsubscribeFromKeyboardNotifications() {
         
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
 
 }
