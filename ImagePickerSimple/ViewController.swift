@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate {
 
     // MARK: Properties
     
@@ -58,48 +58,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotifications()
     }
     
-    // MARK: UI Setup
-    
-    func setInitialView() {
-        
-        imagePickerView.image = nil
-        setupTextFieldWithDefaultSettings(topText, withText: "TOP")
-        setupTextFieldWithDefaultSettings(bottomText, withText: "BOTTOM")
-        shareButton.isEnabled = true
-    }
-    
-    func setupTextFieldWithDefaultSettings(_ textField: UITextField, withText text: String) {
-        
-        textField.delegate = self
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.textAlignment = .center
-        textField.text = text
-        textField.borderStyle = .none
-    }
-    
-    
-    // MARK: Display Image
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imagePickerView.image = image
-        } else {
-            print("Something went wrong")
-        }
-        
-        imagePickerView.contentMode = .scaleAspectFit
-        
-        
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     // MARK: Save
     
-    func save() {
+    func save(memedImage: UIImage) {
         
         let memedImage = generateMemedImage()
         
@@ -112,12 +74,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func configureBar(hidden: Bool) {
         // Hide toolbar and navbar
-        self.navigationBar.isHidden = true
-        self.toolBar.isHidden = true
-        
-        // Show toolbar and navbar
-        self.navigationBar.isHidden = false
-        self.toolBar.isHidden = false
+        self.navigationBar.isHidden = hidden
+        self.toolBar.isHidden = hidden
     
     }
     
@@ -138,28 +96,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         return memedImage
     }
+
     
-    // MARK: Text fields
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        if(textField.text == "TOP" || textField.text == "BOTTOM") {
-            textField.text = ""
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func presentPicker(withSource source: UIImagePickerControllerSourceType) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = source
-        present(pickerController, animated: true, completion: nil)
-    }
     
     // MARK: IBActions
     
@@ -177,8 +115,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         controller.completionWithItemsHandler = {
             (activityType, complete, returnedItems, activityError ) in
+            
+            if complete {
+                self.save(memedImage: memedImage)
+            }
            
-            self.save()
+            
             
         }
         present(controller, animated: true, completion: nil)
@@ -224,6 +166,77 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+
+}
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension ViewController: UIImagePickerControllerDelegate {
+
+    
+    func presentPicker(withSource source: UIImagePickerControllerSourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = source
+        present(pickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imagePickerView.image = image
+        } else {
+            print("Something went wrong")
+        }
+        
+        imagePickerView.contentMode = .scaleAspectFit
+        
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+}
+
+// MARK: - UITextFieldDelegate
+
+extension ViewController: UITextFieldDelegate {
+
+    // MARK: UI Setup
+    
+    func setInitialView() {
+        
+        imagePickerView.image = nil
+        setupTextFieldWithDefaultSettings(topText, withText: "TOP")
+        setupTextFieldWithDefaultSettings(bottomText, withText: "BOTTOM")
+        shareButton.isEnabled = true
+    }
+    
+    func setupTextFieldWithDefaultSettings(_ textField: UITextField, withText text: String) {
+        
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.text = text
+        textField.borderStyle = .none
+    }
+    
+    // MARK: Text fields
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if(textField.text == "TOP" || textField.text == "BOTTOM") {
+            textField.text = ""
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 
 }
