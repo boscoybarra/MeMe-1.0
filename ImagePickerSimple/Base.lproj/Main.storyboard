@@ -22,8 +22,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybl-fg-aAx">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cyH-7e-lYv">
-                                <rect key="frame" x="16" y="64" width="343" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEV-4F-u71">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
@@ -42,43 +46,40 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CvS-hx-cSn">
-                                <rect key="frame" x="16" y="568" width="343" height="30"/>
+                                <rect key="frame" x="16" y="583" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GJT-YS-FGY">
-                                <rect key="frame" x="16" y="96" width="343" height="30"/>
+                                <rect key="frame" x="16" y="74" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybl-fg-aAx">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lEV-4F-u71" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="31I-Vm-3yp"/>
-                            <constraint firstItem="GJT-YS-FGY" firstAttribute="top" secondItem="Ybl-fg-aAx" secondAttribute="bottom" constant="32" id="9Ru-Lb-ztN"/>
-                            <constraint firstItem="Ybl-fg-aAx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ai4-kk-ze9"/>
-                            <constraint firstItem="cyH-7e-lYv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="B5c-Wd-feZ"/>
-                            <constraint firstItem="Ybl-fg-aAx" firstAttribute="leading" secondItem="lEV-4F-u71" secondAttribute="leading" id="IRV-TA-Y8S"/>
-                            <constraint firstItem="Ybl-fg-aAx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Mhn-y5-NJb"/>
-                            <constraint firstItem="cyH-7e-lYv" firstAttribute="leading" secondItem="GJT-YS-FGY" secondAttribute="leading" id="Qa2-7o-REg"/>
-                            <constraint firstItem="GJT-YS-FGY" firstAttribute="trailing" secondItem="CvS-hx-cSn" secondAttribute="trailing" id="QgP-y1-rD0"/>
-                            <constraint firstItem="cyH-7e-lYv" firstAttribute="trailing" secondItem="CvS-hx-cSn" secondAttribute="trailing" id="Tyj-4Q-3Di"/>
-                            <constraint firstItem="GJT-YS-FGY" firstAttribute="leading" secondItem="CvS-hx-cSn" secondAttribute="leading" id="YuN-mV-Z8C"/>
-                            <constraint firstItem="cyH-7e-lYv" firstAttribute="top" secondItem="Ybl-fg-aAx" secondAttribute="bottom" id="d0D-3j-FFL"/>
-                            <constraint firstItem="lEV-4F-u71" firstAttribute="top" secondItem="CvS-hx-cSn" secondAttribute="bottom" constant="25" id="dVv-am-CXW"/>
-                            <constraint firstItem="CvS-hx-cSn" firstAttribute="centerX" secondItem="lEV-4F-u71" secondAttribute="centerX" id="dXR-Eh-won"/>
-                            <constraint firstItem="Ybl-fg-aAx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="gU4-Gl-WtA"/>
-                            <constraint firstItem="Ybl-fg-aAx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="j6E-Jj-mQX"/>
-                            <constraint firstAttribute="trailing" secondItem="Ybl-fg-aAx" secondAttribute="trailing" id="jMc-r6-n30"/>
-                            <constraint firstItem="lEV-4F-u71" firstAttribute="top" secondItem="cyH-7e-lYv" secondAttribute="bottom" id="kWO-wg-XS7"/>
-                            <constraint firstAttribute="trailing" secondItem="Ybl-fg-aAx" secondAttribute="trailing" id="o4G-8M-2XV"/>
-                            <constraint firstItem="Ybl-fg-aAx" firstAttribute="trailing" secondItem="lEV-4F-u71" secondAttribute="trailing" id="zL6-MB-QFQ"/>
+                            <constraint firstAttribute="trailing" secondItem="cyH-7e-lYv" secondAttribute="trailing" id="6fr-ZD-K2P"/>
+                            <constraint firstItem="Ybl-fg-aAx" firstAttribute="trailing" secondItem="cyH-7e-lYv" secondAttribute="trailing" id="7jl-Ff-aeb"/>
+                            <constraint firstItem="CvS-hx-cSn" firstAttribute="centerX" secondItem="lEV-4F-u71" secondAttribute="centerX" id="C7g-B8-7ef"/>
+                            <constraint firstItem="lEV-4F-u71" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="FKT-b6-TDn"/>
+                            <constraint firstItem="GJT-YS-FGY" firstAttribute="trailing" secondItem="CvS-hx-cSn" secondAttribute="trailing" id="Gz8-dT-g5g"/>
+                            <constraint firstItem="Ybl-fg-aAx" firstAttribute="leading" secondItem="cyH-7e-lYv" secondAttribute="leading" id="I2d-lS-g6v"/>
+                            <constraint firstItem="lEV-4F-u71" firstAttribute="top" secondItem="cyH-7e-lYv" secondAttribute="bottom" id="Qn9-EJ-6il"/>
+                            <constraint firstItem="lEV-4F-u71" firstAttribute="top" secondItem="CvS-hx-cSn" secondAttribute="bottom" constant="10" id="SLy-2Z-LGo"/>
+                            <constraint firstItem="cyH-7e-lYv" firstAttribute="trailing" secondItem="lEV-4F-u71" secondAttribute="trailing" id="TR5-fk-R6O"/>
+                            <constraint firstItem="cyH-7e-lYv" firstAttribute="leading" secondItem="lEV-4F-u71" secondAttribute="leading" id="Tg8-YF-a9D"/>
+                            <constraint firstAttribute="trailing" secondItem="Ybl-fg-aAx" secondAttribute="trailing" id="buq-wa-xcE"/>
+                            <constraint firstItem="cyH-7e-lYv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fiX-Sb-LZi"/>
+                            <constraint firstItem="lEV-4F-u71" firstAttribute="top" secondItem="cyH-7e-lYv" secondAttribute="bottom" id="gXH-Ym-Xhk"/>
+                            <constraint firstItem="cyH-7e-lYv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="kLL-K7-OHS"/>
+                            <constraint firstItem="GJT-YS-FGY" firstAttribute="leading" secondItem="CvS-hx-cSn" secondAttribute="leading" id="lSp-kX-jwH"/>
+                            <constraint firstItem="Ybl-fg-aAx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mHT-wb-bHq"/>
+                            <constraint firstItem="cyH-7e-lYv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="oZk-IU-DYP"/>
+                            <constraint firstItem="GJT-YS-FGY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="rj8-cz-7nK"/>
+                            <constraint firstItem="cyH-7e-lYv" firstAttribute="top" secondItem="Ybl-fg-aAx" secondAttribute="bottom" id="t0D-HX-34v"/>
+                            <constraint firstItem="GJT-YS-FGY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="yV5-kX-OvV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="MEME 1.0" id="Z1P-Sr-gPE">

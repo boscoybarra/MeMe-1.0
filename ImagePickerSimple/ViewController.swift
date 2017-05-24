@@ -65,7 +65,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePickerView.image = nil
         setupTextFieldWithDefaultSettings(topText, withText: "TOP")
         setupTextFieldWithDefaultSettings(bottomText, withText: "BOTTOM")
-        shareButton.isEnabled = false
+        shareButton.isEnabled = true
     }
     
     func setupTextFieldWithDefaultSettings(_ textField: UITextField, withText text: String) {
@@ -127,8 +127,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         configureBar(hidden: true)
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
@@ -164,11 +164,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: IBActions
     
     @IBAction func pickAnImage(_ sender: Any) {
-        presentPicker(withSource: .camera)
+        presentPicker(withSource: .photoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        presentPicker(withSource: .photoLibrary)
+        presentPicker(withSource: .camera)
     }
     
     @IBAction func saveAndShare(_ sender: UIBarButtonItem) {
@@ -194,7 +194,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func keyboardWillShow(_ notification:Notification) {
         if bottomText.isFirstResponder && view.frame.origin.y == 0 {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     
