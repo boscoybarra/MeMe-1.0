@@ -59,16 +59,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     
-    // MARK: Save
-    
-    func save(memedImage: UIImage) {
-        
-        let memedImage = generateMemedImage()
-        
-        let _ = Meme(topText: topText.text!, bottomText: bottomText.text!, imagePickerView: imagePickerView.image!, memedImage: memedImage)
-        
-        
-    }
+
     
     // MARK: Generate Meme Image
     
@@ -96,7 +87,35 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         
         return memedImage
     }
+    
+    
+    // MARK: Save
+    
+    func save(memedImage: UIImage?) {
+        
+        guard let memedImage = memedImage else {
+            
+            print("We could not save the pricture")
+            
+            // Show Alert to user if not image
+            imageNotSaved()
+         
+            return
+        }
+        
+        let _ = Meme(topText: topText.text!, bottomText: bottomText.text!, imagePickerView: imagePickerView.image!, memedImage: memedImage)
+        
+        print("The picture was saved successfully \(String(describing: memedImage))")
+        
+}
 
+    // MARK: UIAlert
+    
+    func imageNotSaved() {
+        let alert = UIAlertController(title: "Select an Image", message: "Meme could not be saved because you did not select an image.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     // MARK: IBActions
@@ -185,12 +204,15 @@ extension ViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.image = image
+            
+            // Enable the share button
+            readyToShareAndSave()
+            
         } else {
             print("Something went wrong")
         }
         
         imagePickerView.contentMode = .scaleAspectFit
-        
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -212,6 +234,10 @@ extension ViewController: UITextFieldDelegate {
         imagePickerView.image = nil
         setupTextFieldWithDefaultSettings(topText, withText: "TOP")
         setupTextFieldWithDefaultSettings(bottomText, withText: "BOTTOM")
+        shareButton.isEnabled = true
+    }
+    
+    func readyToShareAndSave() {
         shareButton.isEnabled = true
     }
     
