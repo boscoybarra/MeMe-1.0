@@ -59,15 +59,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     
-
-    
     // MARK: Generate Meme Image
     
     func configureBar(hidden: Bool) {
         // Hide toolbar and navbar
         self.navigationBar.isHidden = hidden
         self.toolBar.isHidden = hidden
-    
     }
     
     func generateMemedImage() -> UIImage {
@@ -93,20 +90,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     func save(memedImage: UIImage?) {
         
-        guard let memedImage = memedImage else {
+        guard let memedImage = memedImage,
+            let _ = imagePickerView.image else {
             
-            print("We could not save the pricture")
-            
-            // Show Alert to user if not image
+            print("No image selected or image could not be saved")
+            // Show Alert to user about missing elements
             imageNotSaved()
-         
+                
             return
         }
         
         let _ = Meme(topText: topText.text!, bottomText: bottomText.text!, imagePickerView: imagePickerView.image!, memedImage: memedImage)
-        
-        print("The picture was saved successfully \(String(describing: memedImage))")
-        
 }
 
     // MARK: UIAlert
@@ -138,9 +132,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             if complete {
                 self.save(memedImage: memedImage)
             }
-           
-            
-            
         }
         present(controller, animated: true, completion: nil)
     }
@@ -163,7 +154,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         if bottomText.isFirstResponder && view.frame.origin.y != 0 {
             view.frame.origin.y = 0
         }
-        
     }
     
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
@@ -186,7 +176,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
-
 }
 
 // MARK: - UIImagePickerControllerDelegate
