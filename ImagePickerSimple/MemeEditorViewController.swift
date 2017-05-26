@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  ImagePickerSimple
 //
 //  Created by J B on 5/19/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate {
+class MemeEditorViewController: UIViewController, UINavigationControllerDelegate {
 
     // MARK: Properties
     
@@ -74,7 +74,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         
         // Render view to an image
         UIGraphicsBeginImageContext(view.frame.size)
-        view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
+        self.view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
@@ -180,7 +180,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
 // MARK: - UIImagePickerControllerDelegate
 
-extension ViewController: UIImagePickerControllerDelegate {
+extension MemeEditorViewController: UIImagePickerControllerDelegate {
 
     
     func presentPicker(withSource source: UIImagePickerControllerSourceType) {
@@ -214,7 +214,7 @@ extension ViewController: UIImagePickerControllerDelegate {
 
 // MARK: - UITextFieldDelegate
 
-extension ViewController: UITextFieldDelegate {
+extension MemeEditorViewController: UITextFieldDelegate {
 
     // MARK: UI Setup
     
@@ -223,7 +223,7 @@ extension ViewController: UITextFieldDelegate {
         imagePickerView.image = nil
         setupTextFieldWithDefaultSettings(topText, withText: "TOP")
         setupTextFieldWithDefaultSettings(bottomText, withText: "BOTTOM")
-        shareButton.isEnabled = true
+        shareButton.isEnabled = false
     }
     
     func readyToShareAndSave() {
@@ -249,7 +249,6 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
         return true
     }
